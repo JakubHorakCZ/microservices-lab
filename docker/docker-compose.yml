@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: dev-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: productdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - devnet
+
+volumes:
+  pgdata:
+
+networks:
+  devnet:
+    driver: bridge
